@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/count_selector"
+        android:title="算八字" />
+    <item
+        android:id="@+id/navigation_shop"
+        android:icon="@drawable/shop_selector"
+        android:title="商城" />
+    <item
+        android:id="@+id/navigation_learn"
+        android:icon="@drawable/learn_selector"
+        android:title="学八字" />
+    <item
+        android:id="@+id/navigation_me"
+        android:icon="@drawable/me_selector"
+        android:title="我" />
+</menu>
