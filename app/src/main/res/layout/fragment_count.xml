@@ -5,15 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e7e7e7">
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="算八字"
-        android:textColor="#000"
-        android:textSize="30dp"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <TextView
+            android:id="@+id/textShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="算八字"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:gravity="center">
 
-    </TextView>
-
+        </TextView>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

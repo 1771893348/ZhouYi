@@ -1,0 +1,14 @@
+A aa
+A ab
+A ac
+B ba
+B bb
+B bc
+B bd
+C ca
+C cb
+C cc
+C cd
+D da
+D db
+D dd
