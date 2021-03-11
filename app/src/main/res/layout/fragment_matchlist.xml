@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e7e7e7"
+    android:orientation="vertical">
+    <Button
+        android:id="@+id/btn_darterlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="镖手管理"></Button>
+    <Button
+        android:id="@+id/btn_beatlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="对战管理"></Button>
+</LinearLayout>
