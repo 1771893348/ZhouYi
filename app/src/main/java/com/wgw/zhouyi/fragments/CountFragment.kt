@@ -21,6 +21,7 @@ class CountFragment:BaseFragment() {
     var userCityMap = mutableMapOf<String, MutableList<UserBean>>()
     var userGroupMap = mutableMapOf<Int, MutableList<UserBean>>()
     var userSortGroupMap = mutableMapOf<Int, MutableList<UserBean>>()
+    var groupSum = 32
     lateinit var textShow:TextView
     companion object{
          lateinit var mCountFragment:CountFragment
@@ -38,22 +39,37 @@ class CountFragment:BaseFragment() {
         return view
     }
     fun grouping(){
+        var indexFlag = 0
         userCityMap.forEach(){
 //            it.value.forEach {
 //                Log.i("wgw===grouping=",it.name)
 //            }
             for ( i in 0 .. it.value.size-1){
-                var index = i%4+1
+                var index = indexFlag%groupSum+1
                 var userlist = userGroupMap[index]
                 if (null == userlist){
                     userlist = mutableListOf(it.value[i])
                     userGroupMap[index] = userlist
                 }else{
-                    userlist.add(it.value[i])
+                    getLowList(index).add(it.value[i])
                 }
+                indexFlag++
             }
         }
         getSortGroup()
+    }
+
+    fun getLowList(i:Int):MutableList<UserBean>{
+        var lowIndex=i
+        var lowSize = Int.MAX_VALUE
+        userGroupMap.forEach(){
+
+            if (it.value.size < lowSize){
+                lowSize = it.value.size
+                lowIndex = it.key
+            }
+        }
+        return userGroupMap[lowIndex]!!
     }
 
     fun getSortGroup(){
@@ -61,19 +77,19 @@ class CountFragment:BaseFragment() {
         userGroupMap.forEach {
                 Log.i("wgw===getSortGroup=",it.key.toString())
             }
-        for (i in 1.. 4 step 2){
-            Log.i("wgw==getSortGroup=",i.toString())
+        for (i in 1.. groupSum step 2){
             userSortGroupMap[index] =userGroupMap[i]!!
+            index++
         }
-        for (i in 2.. 4 step 2){
-            Log.i("wgw==getSortGroup=",i.toString())
+        for (i in 2.. groupSum step 2){
             userSortGroupMap[index] =userGroupMap[i]!!
+            index++
         }
     }
 
     fun ergodic(){
         var sb = StringBuilder()
-        userGroupMap.forEach {
+        userSortGroupMap.forEach {
             Log.i("wgw===getSortGroup=",it.key.toString())
             sb.append("\r\n")
             sb.append("第"+it.key+"组")
