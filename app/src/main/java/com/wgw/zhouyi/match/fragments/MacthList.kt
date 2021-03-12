@@ -38,7 +38,7 @@ class MacthList :Fragment(){
         super.onDetach()
     }
     fun initView(inflater: LayoutInflater,container: ViewGroup?):View{
-        val view = inflater.inflate(R.layout.activity_matchmain,container,false)
+        val view = inflater.inflate(R.layout.fragment_matchlist,container,false)
         return view
     }
 }

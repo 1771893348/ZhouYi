@@ -2,6 +2,7 @@ package com.wgw.zhouyi.match.activitys
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.wgw.zhouyi.R
 
 /**
  * Author:Admin
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 class MatchMainActivity :AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_matchmain)
     }
 
     override fun onStart() {
