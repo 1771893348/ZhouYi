@@ -11,6 +11,9 @@
         android:name=".App"
         android:theme="@style/noTitle">
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".match.activitys.MatchMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

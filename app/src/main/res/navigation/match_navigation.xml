@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/match_navigation"
+    app:startDestination="@id/fragment_matchlist">
+
+    <fragment
+        android:id="@+id/fragment_matchlist"
+        android:name="com.wgw.zhouyi.match.fragments.MacthList"
+        android:label="赛事"
+        tools:layout="@layout/fragment_matchlist">
+        <action
+            android:id="@+id/goto_dartermanage"
+            app:destination="@id/fragment_dartermanage"></action>
+        <action
+            android:id="@+id/goto_beatmanage"
+            app:destination="@id/fragment_beatmanage"></action>
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_dartermanage"
+        android:name="com.wgw.zhouyi.match.fragments.DarterManageFragment"
+        android:label="镖手管理"
+        tools:layout="@layout/fragment_dartersmanage">
+        <action
+            android:id="@+id/goto_darterinfo"
+            app:destination="@id/fragment_dartinfo"></action>
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_dartinfo"
+        android:name="com.wgw.zhouyi.match.fragments.DarterInfoFragment"
+        tools:layout="@layout/fragment_darterinfo"
+        android:label="镖手信息">
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_beatmanage"
+        android:name="com.wgw.zhouyi.match.fragments.BeatManageFragment"
+        android:label="对战表"
+        tools:layout="@layout/fragment_beatmanage">
+        <action
+            android:id="@+id/goto_beatinfo"
+            app:destination="@id/fragment_beatinfo"></action>
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_beatinfo"
+        android:name="com.wgw.zhouyi.match.fragments.BeatInfoFragment"
+        tools:layout="@layout/fragment_beatinfo"
+        android:label="对战详情">
+
+    </fragment>
+</navigation>

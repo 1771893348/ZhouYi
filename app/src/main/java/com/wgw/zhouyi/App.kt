@@ -12,16 +12,17 @@ import com.wgw.zhouyi.data.database.AppDatabase
  * 描述：
  */
 class App :Application(){
-    val db = Room.databaseBuilder(this, AppDatabase::class.java, "database-name").build()
+
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
     }
 
     override fun onCreate() {
         super.onCreate()
+        val db = Room.databaseBuilder(this, AppDatabase::class.java, "database-name").build()
     }
 
-    fun getDB(): AppDatabase {
-        return db
-    }
+//    fun getDB(): AppDatabase {
+//        return db
+//    }
 }
