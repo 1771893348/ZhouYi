@@ -11,9 +11,9 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class Darter(
-    @PrimaryKey val uid:Int,
-    @ColumnInfo(name="darter_name") val darter_name:String?,
-    @ColumnInfo(name = "darter_info") val darter_info:String?,
-    @ColumnInfo(name="darter_icon") val darter_icon:String?,
-    @ColumnInfo(name="darter_sex") val darter_sex:String
+        @PrimaryKey val uid:Int,
+        @ColumnInfo(name="darter_name") var darter_name:String?,
+        @ColumnInfo(name = "darter_info") var darter_info:String?,
+        @ColumnInfo(name="darter_icon") var darter_icon:String?,
+        @ColumnInfo(name="darter_sex") var darter_sex:String
 )
