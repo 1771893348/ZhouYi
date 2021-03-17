@@ -54,15 +54,16 @@ class MacthList :Fragment(),View.OnClickListener{
     fun initOnClick(){
         btn_darterManage!!.setOnClickListener {
             var navOptions = NavOptions.Builder()
-                .build();
-            var navController = Navigation.findNavController(it);
+                .build()
+            var navController = Navigation.findNavController(it)
             navController.navigate(R.id.fragment_dartermanage, null, navOptions)
         }
         btn_beatManage!!.setOnClickListener{
             var navOptions = NavOptions.Builder()
-                .build();
-            var navController = Navigation.findNavController(it);
-            navController.navigate(R.id.fragment_beatmanage, null, navOptions);
+                .build()
+            var bundle = Bundle()
+            var navController = Navigation.findNavController(it)
+            navController.navigate(R.id.fragment_beatmanage, null, navOptions)
         }
     }
 

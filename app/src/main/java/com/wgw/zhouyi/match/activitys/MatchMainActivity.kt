@@ -10,7 +10,9 @@ import android.provider.MediaStore
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.navigation.Navigation
 import com.wgw.zhouyi.R
+import com.wgw.zhouyi.match.fragments.DarterInfoFragment
 import java.io.File
 import java.io.FileOutputStream
 
@@ -67,7 +69,7 @@ class MatchMainActivity :AppCompatActivity(){
                 //用相机返回的照片去调用剪裁也需要对Uri进行处理
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     val contentUri = FileProvider.getUriForFile(
-                        this, "com.hansion.chosehead",
+                        this, "com.wgw.zhouyi.fileprovider",
                         tempFile!!
                     )
                     cropPhoto(contentUri)
@@ -76,17 +78,19 @@ class MatchMainActivity :AppCompatActivity(){
                 }
             }
             ALBUM_REQUEST_CODE -> if (resultCode === RESULT_OK) {
-                val uri = intent.data
+                val uri = data!!.data
                 cropPhoto(uri!!)
             }
             CROP_REQUEST_CODE -> {
-                val bundle = intent.extras
+                val bundle = data!!.extras
                 if (bundle != null) {
                     //在这里获得了剪裁后的Bitmap对象，可以用于上传
-                    val image = bundle.getParcelable<Bitmap>("data")
+                    val image:Bitmap = bundle.getParcelable<Bitmap>("data") as Bitmap
                     //设置到ImageView上
                     //也可以进行一些保存、压缩等操作后上传
-//                    String path = saveImage("crop", image);
+                    var path = saveImage("crop", image);
+//                    DarterInfoFragment().darterIcon(path)
+
                 }
             }
         }

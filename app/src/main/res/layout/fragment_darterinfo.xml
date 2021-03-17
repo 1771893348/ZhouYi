@@ -54,7 +54,7 @@
         android:id="@+id/sp_sex"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:prompt="男"
+        android:prompt="@string/man"
         android:entries="@array/sexs"
         android:layout_marginLeft="10dp"
         android:background="#fff"
