@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
 import com.wgw.zhouyi.R
 
 /**
@@ -18,6 +19,7 @@ import com.wgw.zhouyi.R
  */
 class DarterManageFragment:Fragment() {
     var btn_add_darter:Button?=null
+    var rv_darters: RecyclerView?=null
     override fun onAttach(context: Context) {
         super.onAttach(context)
     }
@@ -40,6 +42,7 @@ class DarterManageFragment:Fragment() {
     fun initView(inflater: LayoutInflater,container: ViewGroup?):View{
         val view = inflater.inflate(R.layout.fragment_dartersmanage,container,false)
         btn_add_darter = view.findViewById(R.id.btn_add_darter)
+        rv_darters = view.findViewById(R.id.rv_darters)
         iniListener()
         return view
     }
