@@ -13,6 +13,7 @@ import androidx.core.content.FileProvider
 import androidx.navigation.Navigation
 import com.wgw.zhouyi.R
 import com.wgw.zhouyi.match.fragments.DarterInfoFragment
+import com.wgw.zhouyi.match.interfaces.ImageCallBack
 import java.io.File
 import java.io.FileOutputStream
 
@@ -25,6 +26,7 @@ import java.io.FileOutputStream
 class MatchMainActivity :AppCompatActivity(){
     //调用照相机返回图片文件
     private var tempFile: File ?= null
+    var callBackList:ArrayList<ImageCallBack> = ArrayList()
     companion object{
         //相册请求码
         private val ALBUM_REQUEST_CODE = 1
@@ -90,12 +92,24 @@ class MatchMainActivity :AppCompatActivity(){
                     //也可以进行一些保存、压缩等操作后上传
                     var path = saveImage("crop", image);
 //                    DarterInfoFragment().darterIcon(path)
+                    if (null != callBackList && callBackList.size>0){
+                        callBackList.forEach{
+                            it.onImageUrl(path)
+                        }
+                    }
 
                 }
             }
         }
     }
 
+    fun addCallBack(imageCallBack: ImageCallBack){
+        callBackList.add(imageCallBack)
+    }
+
+    fun removeCallBack(imageCallBack: ImageCallBack){
+        callBackList.remove(imageCallBack)
+    }
     fun getPicFromCamera(){
         tempFile = File(
             Environment.getStorageDirectory().path,

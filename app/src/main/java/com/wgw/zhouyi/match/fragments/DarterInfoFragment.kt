@@ -3,16 +3,19 @@ package com.wgw.zhouyi.match.fragments
 import android.content.Context
 import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.wgw.zhouyi.App
 import com.wgw.zhouyi.R
 import com.wgw.zhouyi.data.tables.Darter
 import com.wgw.zhouyi.match.activitys.MatchMainActivity
+import com.wgw.zhouyi.match.interfaces.ImageCallBack
 import java.util.*
 
 /**
@@ -20,7 +23,7 @@ import java.util.*
  * Time:2021/3/11 17:40
  * 描述：
  */
-class DarterInfoFragment:Fragment() {
+class DarterInfoFragment:Fragment() ,ImageCallBack{
     lateinit var btn_add:Button
     var darter_icon:ImageView?=null
     var darter: Darter?=null
@@ -45,9 +48,16 @@ class DarterInfoFragment:Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        darter = Darter(0,"wgw","wwwww","","男")
         var res = activity!!.resources
         sexs = res.getStringArray(R.array.sexs)
+        (activity as MatchMainActivity).addCallBack(this)
         return initView(inflater, container)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as MatchMainActivity).removeCallBack(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -65,9 +75,7 @@ class DarterInfoFragment:Fragment() {
         return view
     }
     fun darterIcon(path: String){
-        darter!!.darter_icon = path
-        darterIcon = path
-        Glide.with(activity!!).load(path).into(darter_icon!!)
+
     }
     fun initListener(){
         val name = edt_name!!.text.toString()
@@ -110,8 +118,16 @@ class DarterInfoFragment:Fragment() {
             if (null != darter){
                 App().db!!.darterDao().insertDarter(darter!!)
             }
+            Navigation.findNavController(it).popBackStack()
 
         }
+    }
+
+    override fun onImageUrl(url: String) {
+        Log.i("wgw_onImageUrl","--"+url)
+        darter!!.darter_icon = url
+        darterIcon = url
+        Glide.with(activity!!).load(url).into(darter_icon!!)
     }
 
 }
