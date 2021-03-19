@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.wgw.zhouyi.App
 import com.wgw.zhouyi.R
+import com.wgw.zhouyi.data.database.AppDatabase
 import com.wgw.zhouyi.data.tables.Darter
 import com.wgw.zhouyi.match.activitys.MatchMainActivity
 import com.wgw.zhouyi.match.interfaces.ImageCallBack
@@ -78,9 +79,7 @@ class DarterInfoFragment:Fragment() ,ImageCallBack{
 
     }
     fun initListener(){
-        val name = edt_name!!.text.toString()
-        val age = edt_age!!.text.toString()
-        val synopsis = edt_synopsis!!.text.toString()
+
         var arrayAdapter = ArrayAdapter.createFromResource(activity!!, R.array.sexs, android.R.layout.simple_spinner_item)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         sp_sex!!.adapter = arrayAdapter
@@ -98,6 +97,9 @@ class DarterInfoFragment:Fragment() ,ImageCallBack{
             (activity as MatchMainActivity).getPicFromAlbm()
         }
         btn_add.setOnClickListener{
+            val name = edt_name!!.text.toString()
+            val age = edt_age!!.text.toString()
+            val synopsis = edt_synopsis!!.text.toString()
             if (null == name || name.equals("")){
                 Toast.makeText(activity, "请输入姓名", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -116,7 +118,8 @@ class DarterInfoFragment:Fragment() ,ImageCallBack{
             darter!!.darter_info =synopsis
 
             if (null != darter){
-                App().db!!.darterDao().insertDarter(darter!!)
+//                App().getDB().darterDao().insertDarter(darter!!)
+                AppDatabase.getInstance(activity!!).darterDao().insertDarter(darter!!)
             }
             Navigation.findNavController(it).popBackStack()
 

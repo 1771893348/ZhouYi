@@ -1,6 +1,8 @@
 package com.wgw.zhouyi.match.activitys
 
+import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
@@ -9,6 +11,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.navigation.Navigation
 import com.wgw.zhouyi.R
@@ -27,6 +30,7 @@ class MatchMainActivity :AppCompatActivity(){
     //调用照相机返回图片文件
     private var tempFile: File ?= null
     var callBackList:ArrayList<ImageCallBack> = ArrayList()
+
     companion object{
         //相册请求码
         private val ALBUM_REQUEST_CODE = 1
@@ -34,10 +38,16 @@ class MatchMainActivity :AppCompatActivity(){
         private val CAMERA_REQUEST_CODE = 2
         //裁剪请求码
         private val CROP_REQUEST_CODE = 3
+
+        private val REQUEST_EXTERNAL_STORAGE = 1
+
+        private val PERMISSIONS_STORAGE = arrayOf("android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE" )
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matchmain)
+        verifyStoragePermissions(this)
     }
 
     override fun onStart() {
@@ -154,7 +164,7 @@ class MatchMainActivity :AppCompatActivity(){
     }
 
     fun saveImage(name:String,bmp:Bitmap):String{
-        val appDir = File(Environment.getStorageDirectory().path)
+        val appDir = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!.path)
         if (!appDir.exists()){
             appDir.mkdir()
         }
@@ -171,4 +181,19 @@ class MatchMainActivity :AppCompatActivity(){
         }
         return ""
     }
+//然后通过一个函数来申请
+    fun verifyStoragePermissions( activity: Activity) {
+        try {
+            //检测是否有写的权限
+            var permission = ActivityCompat.checkSelfPermission(activity,
+            "android.permission.WRITE_EXTERNAL_STORAGE");
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                // 没有写的权限，去申请写的权限，会弹出对话框
+                ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
+            }
+        } catch (e:Exception) {
+            e.printStackTrace();
+        }
+    }
+
 }
