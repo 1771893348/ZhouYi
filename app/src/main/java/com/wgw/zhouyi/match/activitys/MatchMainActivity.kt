@@ -100,7 +100,7 @@ class MatchMainActivity :AppCompatActivity(){
                     val image:Bitmap = bundle.getParcelable<Bitmap>("data") as Bitmap
                     //设置到ImageView上
                     //也可以进行一些保存、压缩等操作后上传
-                    var path = saveImage("crop", image);
+                    var path = saveImage("crop_"+System.currentTimeMillis(), image);
 //                    DarterInfoFragment().darterIcon(path)
                     if (null != callBackList && callBackList.size>0){
                         callBackList.forEach{

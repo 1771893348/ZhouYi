@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
     <ImageView
         android:id="@+id/img_darter_icon"
         android:layout_width="58dp"
@@ -14,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@id/img_darter_icon"
         android:layout_toRightOf="@id/img_darter_icon"
+        android:layout_marginLeft="10dp"
         android:gravity="center_vertical">
         <LinearLayout
             android:id="@+id/lnt_name"
@@ -25,13 +28,13 @@
                 android:id="@+id/tv_darter_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="38dp"
+                android:textSize="28dp"
                 android:text="wgw"></TextView>
             <TextView
                 android:id="@+id/tv_darter_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="40dp"
+                android:textSize="32dp"
                 android:layout_marginLeft="20dp"
                 android:text="男"></TextView>
 
@@ -41,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="dwqflnlfl"
-            android:textSize="38dp"
+            android:textSize="25dp"
             android:layout_below="@id/lnt_name">
 
         </TextView>

@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.wgw.zhouyi.R
 
 /**
@@ -14,6 +16,8 @@ import com.wgw.zhouyi.R
  * 描述：
  */
 class BeatManageFragment:Fragment() {
+    var btn_add_beat: Button?= null
+    var rv_beat:RecyclerView?=null
     override fun onAttach(context: Context) {
         super.onAttach(context)
     }
@@ -35,6 +39,12 @@ class BeatManageFragment:Fragment() {
     }
     fun initView(inflater: LayoutInflater,container: ViewGroup?):View{
         val view = inflater.inflate(R.layout.fragment_beatmanage,container,false)
+        initListener()
         return view
+    }
+    fun initListener(){
+        btn_add_beat!!.setOnClickListener{
+
+        }
     }
 }
